@@ -4,7 +4,7 @@ export PATH
 Rzk_Check()
 {
 	if [ ! -d "/var/www/html/" ]; then
-	echo "你不搭建你生成个毛APP？"
+	echo "请先搭建系统"
 	exit
 fi
 Rzk_APP
