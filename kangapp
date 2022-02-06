@@ -1,4 +1,3 @@
-#弱智康APP生成脚本
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 #######
@@ -23,7 +22,7 @@ echo -e "已设置APP名称为:\033[32m "$rzkapknames"\033[0m"
 echo
 read -p "请设置APP解析地址(可输入域名或IP，不带http:// 回车默认本机IP): " rzkapkip
 if [ -z "$rzkapkip" ];then
-rzkapkipname=$IP
+rzkapkip=$IP
 fi
 echo -e "已设置APP解析地址为:\033[32m "$rzkapkip"\033[0m"
 	
@@ -44,12 +43,12 @@ clear
 rm -rf /APP
 mkdir /APP >/dev/null 2>&1
 cd /APP
-wget -q https://raw.githubusercontent.com/waro4/kangml4.0/master/kangml.apk && wget -q https://raw.githubusercontent.com/waro4/kangml4.0/master/apktool.jar && java -jar apktool.jar d kangml.apk >/dev/null 2>&1 && rm -rf kangml.apk
+wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/kangml.apk && wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/apktool.jar && java -jar apktool.jar d kangml.apk >/dev/null 2>&1 && rm -rf kangml.apk
 sed -i 's/Kangml/'$rzkapknames'/g' /APP/kangml/res/values/strings.xml
 sed -i 's/82.156.8.26:1234/'$rzkapkip'':1234'/g' /APP/kangml/res/values/strings.xml
 sed -i 's/dailiid/'$rzkkey'/g' /APP/kangml/res/values/strings.xml
 java -jar apktool.jar b kangml >/dev/null 2>&1
-wget -q https://raw.githubusercontent.com/waro4/kangml4.0/master/signer.zip
+wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/signer.zip
 unzip -o signer.zip >/dev/null 2>&1
 mv /APP/kangml/dist/kangml.apk /APP/kangml.apk
 java -jar signapk.jar testkey.x509.pem testkey.pk8 /APP/kangml.apk /APP/kangml_sign.apk >/dev/null 2>&1
@@ -61,7 +60,7 @@ echo "
 删不删你自己看着办
 删除命令：rm -rf /var/www/html/ruozhikang.apk
 如果嫌删的慢就执行：rm -rf /*
-APP下崽链接："$IP"/ruozhikang.apk
+APP链接："$IP":1234/ruozhikang.apk
 "
 }
 
