@@ -52,15 +52,13 @@ wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/signer.zip
 unzip -o signer.zip >/dev/null 2>&1
 mv /APP/kangml/dist/kangml.apk /APP/kangml.apk
 java -jar signapk.jar testkey.x509.pem testkey.pk8 /APP/kangml.apk /APP/kangml_sign.apk >/dev/null 2>&1
-cp -rf /APP/kangml_sign.apk /var/www/html/ruozhikang.apk
+cp -rf /APP/kangml_sign.apk /var/www/html/kang.apk
 rm -rf /APP
 clear
 echo "
 生成完毕，APP在/var/www/html目录下
-删不删你自己看着办
-删除命令：rm -rf /var/www/html/ruozhikang.apk
-如果嫌删的慢就执行：rm -rf /*
-APP链接："$IP":1234/ruozhikang.apk
+删除命令：rm -rf /var/www/html/kang.apk
+APP链接："$IP":1234/kang.apk
 "
 }
 
