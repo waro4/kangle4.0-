@@ -5,7 +5,7 @@ export PATH
 Rzk_Check()
 {
 	if [ ! -d "/var/www/html/" ]; then
-	echo "你不搭建弱智康你生成个毛APP？"
+	echo "你不搭建你生成个毛APP？"
 	exit
 fi
 Rzk_APP
@@ -14,9 +14,9 @@ Rzk_APP
 Rzk_APP()
 {
 echo
-read -p "请设置APP名称(默认：弱智康加速器): " rzkapknames
+read -p "请设置APP名称(默认：加速器): " rzkapknames
 if [ -z "$rzkapknames" ];then
-rzkapknames=弱智康加速器
+rzkapknames=加速器
 fi
 echo -e "已设置APP名称为:\033[32m "$rzkapknames"\033[0m"
 	
