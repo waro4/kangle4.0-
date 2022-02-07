@@ -160,17 +160,7 @@ Install_Command
 fi
 if [[ $b == 2 ]];then
 echo "已选择安装源：备用"
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup >/dev/null 2>&1
-wget -qO /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo >/dev/null 2>&1
-wget -qO /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo >/dev/null 2>&1
-yum install -y https://mirrors.aliyun.com/remi/enterprise/remi-release-7.rpm >/dev/null 2>&1
-sed -i 's/https*:\/\/rpms.remirepo.net/https:\/\/mirrors.aliyun.com\/remi/g' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
-sed -i 's/#baseurl/baseurl/g' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
-sed -i 's|^mirrorlist|#mirrorlist|' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
-yum clean all >/dev/null 2>&1
-yum makecache >/dev/null 2>&1
-yum -y install yum-utils >/dev/null 2>&1
-Install_Command
+
 fi
 echo "已选择安装源：阿里云"
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup >/dev/null 2>&1
