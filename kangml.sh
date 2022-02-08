@@ -26,13 +26,18 @@ echo "
 ==================================================================
 		Openvpn流量控制系统 | 一键搭建脚本
                  Powered by kangml.com 2015-2021
-                 本脚本👉Geela维护 2022-2-7 2:37
-		       交流群 632088776
-     温馨提示： 
-         做最好的服务,做最好的搭建程序。
+				 
+                  Crack By yyrh.me&lyiqk.cn 2015-2021
+     温馨提示：
+         做最好(lā jī)的服务,做最好(lā jī)的搭建程序。
+         授权码绑定IP后可在同一IP下无限使用！(这么麻烦干啥，我帮你破了，顺便帮你修复了bug，不用谢我。)
          禁止使用Centos7.x 64位以外的系统版本搭建！
          本脚本仅适用于学习与研究等个人用途,请勿用于任何违法国家法律的活动！
-         谢谢各位老康！
+         谢谢各位老康粉(nǎo cán fěn)的支持！
+                 by 康师傅(ruò zhì kāng) 2021-05-11
+				 
+                  Crack By 烟雨如花 2022-01-10
+                  凌一在此提前祝大家新年快乐！
 ==================================================================
 回车Enter继续~
 "
@@ -46,7 +51,7 @@ Install_Mean()
 clear
 echo "
 ------------------------
-1 - 安装康师傅流控 + APP
+1 - 安装康师傅(ruò zhì kāng)流控 + APP
 2 - 在线更新   >> （免重装一键更新流控程序）
 3 - 流控负载   >> （集群服务器 负载均衡 账号共享）
 4 - 制作代理APP    >> (生成代理APP)
@@ -85,12 +90,14 @@ Check_OS()
 {
 if [ -f "/var/www/html" ];then
 echo "
-康师傅AI智能系统：检测到您已安装流控，如需要重新安装流控，请先给服务器重装系统！
+康师傅(ruò zhì kāng)AI智能(zhàng)系统：检测到您已安装流控，如需要重新安装流控，请先给服务器重装系统！
+凌一：咋地了老铁，是不是对我写的弱智康脚本情有独钟老想搭建啊，那多搭建几台吧，这可比官方的好使~~~
 "
 fi
 if [ ! -f "/root/bin/ps" ];then
 echo "
 【系统错误】可能是服务器环境问题导致～请联系客服！结束搭建。
+凌一：没事别搞事啊卧槽，你是内鬼吗，有内鬼，终止交易！
 "
 fi
 Install_Auth
@@ -104,21 +111,48 @@ wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/kangml-update.zi
 unzip -o kangml-update.zip >/dev/null 2>&1
 chmod 777 -R ./ >/dev/null 2>&1
 rm -rf kangml-update.zip >/dev/null 2>&1
-echo "已经更新完毕！"
+echo "弱智康提示您：已经更新完毕！"
 }
 
 Install_Fuzai()
 {
-wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/kangfz
+wget -q 下崽源/kangfz.sh
 }
 
 Install_App()
 {
-wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/kangapp
+wget -q 下崽源/kangapp.sh
 }
 
 Install_Auth()
 {
+echo "
+【验证授权】
+温馨提示：为了您的服务器安全，请勿(kuài)非法破解授权。
+如需安装请购(wù)买正版密钥：pay.pykky.com
+脚本授权一次，同一IP永久使用，卡密请保管好。
+(凌一:我大哥周某教导我，买是不可能买的，这辈子都不可能买的，只能白嫖这个样子，破解一时爽，一直破解一直爽。)
+"
+echo
+echo -n "请输入流控搭建授权码(yyrh.me):"
+read PASSWD
+sleep 1
+echo "正在加载数据...请稍候..."
+if [ "$PASSWD" = 'yyrh.me' ]
+then
+Auth_Yes
+fi
+echo "
+【错误】授权码不正确！请检查一下是不是复制错了？结束搭建。
+凌一:有内鬼？你TM不对劲！一看就不是自己人，卧槽嘞！
+"
+exit;0
+}
+
+Auth_Yes()
+{
+echo "【授权成功】谢谢您，回车键继续搭建！"
+read
 Close_SELinux
 }
 
@@ -159,8 +193,19 @@ yum -y install yum-utils >/dev/null 2>&1
 Install_Command
 fi
 if [[ $b == 2 ]];then
-echo "已选择安装源：备用"
-
+# 没扒他的yum源 凑合用阿里云的吧
+echo "已选择安装源：弱智康"
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup >/dev/null 2>&1
+wget -qO /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo >/dev/null 2>&1
+wget -qO /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo >/dev/null 2>&1
+yum install -y https://mirrors.aliyun.com/remi/enterprise/remi-release-7.rpm >/dev/null 2>&1
+sed -i 's/https*:\/\/rpms.remirepo.net/https:\/\/mirrors.aliyun.com\/remi/g' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
+sed -i 's/#baseurl/baseurl/g' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
+sed -i 's|^mirrorlist|#mirrorlist|' /etc/yum.repos.d/remi-glpi91.repo /etc/yum.repos.d/remi-glpi92.repo /etc/yum.repos.d/remi-glpi93.repo /etc/yum.repos.d/remi-glpi94.repo /etc/yum.repos.d/remi-modular.repo /etc/yum.repos.d/remi-php54.repo /etc/yum.repos.d/remi-php70.repo /etc/yum.repos.d/remi-php71.repo /etc/yum.repos.d/remi-php72.repo /etc/yum.repos.d/remi-php73.repo /etc/yum.repos.d/remi-php74.repo /etc/yum.repos.d/remi-php80.repo /etc/yum.repos.d/remi-php81.repo /etc/yum.repos.d/remi.repo /etc/yum.repos.d/remi.repo.rpmnew /etc/yum.repos.d/remi-safe.repo >/dev/null 2>&1
+yum clean all >/dev/null 2>&1
+yum makecache >/dev/null 2>&1
+yum -y install yum-utils >/dev/null 2>&1
+Install_Command
 fi
 echo "已选择安装源：阿里云"
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup >/dev/null 2>&1
@@ -456,7 +501,7 @@ wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/apktool.jar > /d
 java -jar apktool.jar d kangml.apk > /dev/null 2>&1
 rm -rf kangml.apk > /dev/null 2>&1
 sed -i 's/Kangml/'$AppName'/g' /APP/kangml/res/values/strings.xml > /dev/null 2>&1
-sed -i 's/82.156.8.26/'$IP'/g' /APP/kangml/res/values/strings.xml > /dev/null 2>&1
+sed -i 's/82.156.8.26:1234/'$IP:1234'/g' /APP/kangml/res/values/strings.xml > /dev/null 2>&1
 sed -i 's/dailiid/'0'/g' /APP/kangml/res/values/strings.xml > /dev/null 2>&1
 java -jar apktool.jar b kangml > /dev/null 2>&1
 wget -q https://raw.githubusercontent.com/waro4/kangle4.0-/main/signer.zip > /dev/null 2>&1
@@ -502,7 +547,7 @@ echo "
 代理中心: http://"$IP":1234/daili
 用户中心: http://"$IP":1234
 -----------------------------------
-APP下载地址: http://"$IP":1234/kangmlapp.apk
+APP1下载地址: http://"$IP":1234/kangmlapp.apk
 PC软件下载地址: https://wwa.lanzous.com/u/66fz8
 IOS软件: 使用国际ID 搜索openvpn即可
 -----------------------------------
@@ -522,7 +567,8 @@ cat /home/messages.txt
 
 Install_Last()
 {
-echo "恭喜您，搭建完成！
+echo "恭喜您，搭建完成！By：kangml.com 破解By：lyiqk.cn&yyrh.me
+搭建问题可加入官方交流群问我，后期老康计划搞一些项目想跟大家一起做，可关注微信公众号：程序员老康
 输入回车结束搭建，并重启VPN："
 read
 vpn restart
@@ -530,7 +576,7 @@ shvpn 3 > /dev/null 2>&1
 shvpn 4 > /dev/null 2>&1
 shvpn 3
 sed -i "s/FasAUTH.bin/kangml_auth.bin/g" /var/www/html/''$Web''/admin.php > /dev/null 2>&1
-echo "感谢使用Geela一键搭建OpenVpn康师傅流控脚本~"
+echo "感谢使用康师傅(ruò zhì kāng)一键搭建OpenVpn流控脚本~"
 exit;0
 }
 
